@@ -20,19 +20,19 @@ const Check: React.FC<CheckProps> = ({ label }) => {
   };
 
   return (
-    <div className="flex items-center">
+    <div className="flex items-center mb-2 ">
       <input
         type="checkbox"
         checked={isChecked}
         onChange={handleCheckboxChange}
         className={`${
           isChecked ? "opacity-100" : "opacity-0"
-        } z-40 min-h-6 min-w-6 mr-2 relative checked:accent-bubble-gum`}
+        } cursor-pointer z-40 min-h-6 min-w-6 mr-2  relative checked:accent-bubble-gum`}
       />
       <div
         className={`${
           isChecked ? "opacity-0" : "opacity-100"
-        } absolute z-10 rounded min-h-6 min-w-6 mr-2 p-2 bg-medium-grey border border-black`}></div>
+        } cursor-pointer absolute z-10 rounded min-h-6 min-w-6 mr-2 p-2 bg-medium-grey border border-black`}></div>
       <p className="text-light-grey">{label}</p>
     </div>
   );

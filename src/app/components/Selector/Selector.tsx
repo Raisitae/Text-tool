@@ -19,14 +19,14 @@ export default function Selector({
   label,
 }: SelectorProps) {
   return (
-    <div className="mb-4">
+    <div className="">
       <h2 className="mb-2 text-light-grey font-bold">{title}</h2>
       {type === 1 ? (
         buttons.map((button, index) => (
           <Button key={index} text={button.text} tag={button.tag} />
         ))
       ) : (
-        <div className="flex align-center justify-center">
+        <div className="flex align-center">
           <Input placeholder={placeholder} />
           {buttons.map((button, index) => (
             <Button key={index} text={button.text} tag={button.tag} />
