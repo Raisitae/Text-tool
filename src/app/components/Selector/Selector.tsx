@@ -1,4 +1,4 @@
-import React from "react";
+import React, { use } from "react";
 import Button from "../Button/Button";
 import Input from "../Input/Input";
 import Check from "../Check/Check";
@@ -18,6 +18,7 @@ export default function Selector({
   placeholder,
   label,
 }: SelectorProps) {
+
   return (
     <div className="">
       <h2 className="mb-2 text-light-grey font-bold">{title}</h2>

@@ -1,7 +1,9 @@
 "use client";
 
 import { Inter } from "next/font/google";
-import React from "react";
+import React, { useState } from "react";
+import { useTextareaContext } from "../../context/TextareaContext";
+import { handleAll, handleCapitalization } from "../../utils/buttonFunctions";
 
 const inter = Inter({
   weight: "400",
@@ -15,8 +17,54 @@ interface ButtonProps {
 }
 
 const Button: React.FC<ButtonProps> = ({ tag, text }) => {
+  const [sentences, setSentences] = useState<string[]>([]);
+
+  const { textarea, setTextarea, buttonClick, setButtonClick, check, link } =
+    useTextareaContext();
+
   const handleClick = () => {
-    alert(tag);
+    switch (tag) {
+      case "ol":
+      case "ul":
+        handleAll(1, tag, textarea, setTextarea, setButtonClick, setSentences);
+        break;
+      case "b":
+      case "i":
+      case "h1":
+      case "h2":
+      case "h3":
+      case "h4":
+      case "h5":
+      case "h6":
+      case "h7":
+      case "li":
+        handleAll(2, tag, textarea, setTextarea, setButtonClick, setSentences);
+        break;
+      case "br":
+        handleAll(3, tag, textarea, setTextarea, setButtonClick, setSentences);
+        break;
+      case "a":
+        handleAll(
+          4,
+          tag,
+          textarea,
+          setTextarea,
+          setButtonClick,
+          setSentences,
+          check,
+          link
+        );
+        break;
+      case "upper":
+      case "lower":
+      case "sentence":
+        console.log(tag);
+        handleCapitalization(tag, textarea, setTextarea, setButtonClick);
+        break;
+      default:
+        console.log(tag);
+        break;
+    }
   };
 
   return (

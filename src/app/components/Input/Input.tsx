@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { Inter } from "next/font/google";
+import { useTextareaContext } from "@/app/context/TextareaContext";
 
 const inter = Inter({
   weight: "400",
@@ -15,8 +16,13 @@ interface FormProps {
 export const Input: React.FC<FormProps> = ({ placeholder }) => {
   const [inputValue, setInputValue] = useState("");
 
+  const { setLink } = useTextareaContext();
+
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
+    setLink(inputValue);
+    // maybe this should be in the button later but in the meantime its okay, putting it in the button will reduce load time
+    // this is causing the last letter to not be registered
   };
 
   return (

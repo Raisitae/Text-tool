@@ -42,7 +42,7 @@ export const selectorsData = [
     type: 1,
     buttons: [
       { tag: "upper", text: "TO UPPER" },
-      { tag: "lower ", text: "to lower" },
+      { tag: "lower", text: "to lower" },
       { tag: "sentence", text: "Sentence Case" },
     ],
   },

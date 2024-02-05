@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { Inter } from "next/font/google";
+import { useTextareaContext } from "@/app/context/TextareaContext";
 
 const inter = Inter({
   weight: "400",
@@ -14,9 +15,11 @@ interface CheckProps {
 
 const Check: React.FC<CheckProps> = ({ label }) => {
   const [isChecked, setIsChecked] = useState(false);
+  const { setCheck } = useTextareaContext();
 
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
+    setCheck(!isChecked);
   };
 
   return (

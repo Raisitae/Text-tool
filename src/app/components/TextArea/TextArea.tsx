@@ -1,7 +1,8 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Inter } from "next/font/google";
 import { Courier_Prime } from "next/font/google";
+import { useTextareaContext } from "../../context/TextareaContext";
 
 const inter = Inter({
   weight: "400",
@@ -15,9 +16,57 @@ interface FormProps {
 
 export const TextArea: React.FC<FormProps> = ({ placeholder }) => {
   const [inputValue, setInputValue] = useState("");
+  const [selectionUser, setSelectionUser] = useState("");
+
+  const { textarea, setTextarea, buttonClick, setButtonClick } =
+    useTextareaContext();
+
+  useEffect(() => {
+    handleButtonClick();
+    //setInputValue(textarea);
+    setButtonClick(false);
+  }, [buttonClick]);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setInputValue(event.target.value);
+  };
+
+  const handleButtonClick = () => {
+    // Use the selectionUser value to replace the selected text
+    console.log(selectionUser);
+
+    if (selectionUser) {
+      const start = inputValue.indexOf(selectionUser);
+      const end = start + selectionUser.length;
+
+      // Replace the selected text
+      const newInputValue =
+        inputValue.substring(0, start) + textarea + inputValue.substring(end);
+
+      setInputValue(newInputValue);
+      setSelectionUser(""); // Clear the selection after replacement
+    } else {
+      const handleInputChange = (
+        event: React.ChangeEvent<HTMLTextAreaElement>
+      ) => {
+        setInputValue(event.target.value);
+        const positionOfClick = event.target.selectionStart;
+        console.log(positionOfClick);
+
+        const end = positionOfClick + 1;
+
+        const newInputValue =
+          inputValue.substring(0, positionOfClick) + inputValue.substring(end);
+
+        setSelectionUser(newInputValue); // Clear the selection after replacement
+      };
+    }
+  };
+
+  const getTextSelection = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const selectedText = window.getSelection()?.toString() || "";
+    setSelectionUser(selectedText);
+    setTextarea(selectedText);
   };
 
   return (
@@ -26,8 +75,9 @@ export const TextArea: React.FC<FormProps> = ({ placeholder }) => {
         placeholder={placeholder}
         value={inputValue}
         onChange={handleInputChange}
+        onSelect={getTextSelection}
         spellCheck="false"
-        className={`font-mono
+        className={`font-mono 
       bg-medium-grey w-full min-h-56 placeholder:text-placeholder-grey text-light-grey border border-black transition ease-in-out delay-150 px-6 py-4 rounded-3xl mt-5`}
       />
       <div className="absolute m-3 cursor-pointer">
