@@ -25,7 +25,6 @@ export const Input: React.FC<FormProps> = ({ placeholder }) => {
     // maybe this should be in the button later but in the meantime its okay, putting it in the button will reduce load time
     // this is causing the last letter to not be registered
   };
-  };
 
   return (
     <input
