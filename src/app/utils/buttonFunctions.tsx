@@ -74,40 +74,42 @@ export const handleAll = (
         break;
     }
   } else {
-    // Split the text into sentences based on line breaks
-
-    // maybe we should add a br between the paragraphs. not sure.
-    const newSentences = textarea.split(/\n+/);
-    setSentences(newSentences);
-    for (let i = 0; i < newSentences.length; i++) {
-      switch (tagCase) {
-        case 2: //normal tags
-          let textChanged1 = `<${tag}>` + newSentences[i] + `</${tag}>`;
-          newSentences[i] = textChanged1;
-          break;
-        case 3: //br/
-          let textChanged2 = newSentences[i] + `<${tag}/>`;
-          newSentences[i] = textChanged2;
-          break;
-        case 4: // a href
-          let textChanged3 =
-            `<${tag} href="${link}" ${check ? `target="_blank">` : `>`}` +
-            newSentences[i] +
-            `</${tag}>`;
-          newSentences[i] = textChanged3;
-          break;
+    if (tagCase === 1) {
+      setTextarea(`<${tag}>` + textarea + `</${tag}>`);
+    } else {
+      //here im missing funcionts for ol and ul
+      const newSentences = textarea.split(/\n+/);
+      setSentences(newSentences);
+      for (let i = 0; i < newSentences.length; i++) {
+        switch (tagCase) {
+          case 2: //normal tags
+            let textChanged1 =
+              `<${tag}>` + newSentences[i] + `</${tag}>` + "\n";
+            newSentences[i] = textChanged1;
+            break;
+          case 3: //br/
+            let textChanged2 = newSentences[i] + `<${tag}/>`;
+            newSentences[i] = textChanged2;
+            break;
+          case 4: // a href
+            let textChanged3 =
+              `<${tag} href="${link}" ${check ? `target="_blank">` : `>`}` +
+              newSentences[i] +
+              `</${tag}>`;
+            newSentences[i] = textChanged3;
+            break;
+        }
       }
+      let text = newSentences.join("\n");
+      setTextarea(text);
     }
-    let text = newSentences.join("\n");
-    setTextarea(text);
   }
   setButtonClick(true);
 };
 
 export const handleSentenceCase = (text: string) => {
-  // Split the text into words based on whitespace characters
-  const words = text.split(/\s+/);
-
+  // Split the text into words based on whitespace characters, and make them lower case
+  const words = text.toLowerCase().split(" ");
   // Capitalize the first letter of each word
   const sentenceCaseText = words
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))

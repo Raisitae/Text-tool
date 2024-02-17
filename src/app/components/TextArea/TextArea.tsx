@@ -18,23 +18,28 @@ export const TextArea: React.FC<FormProps> = ({ placeholder }) => {
   const [inputValue, setInputValue] = useState("");
   const [selectionUser, setSelectionUser] = useState("");
 
-  const { textarea, setTextarea, buttonClick, setButtonClick } =
-    useTextareaContext();
+  const {
+    textarea,
+    setTextarea,
+    buttonClick,
+    setButtonClick,
+    setTextareaContent,
+  } = useTextareaContext();
 
   useEffect(() => {
     handleButtonClick();
-    //setInputValue(textarea);
     setButtonClick(false);
+    setTextareaContent(inputValue);
   }, [buttonClick]);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setInputValue(event.target.value);
+    const newContent = event.target.value;
+    setInputValue(newContent);
+    setTextareaContent(newContent);
   };
 
   const handleButtonClick = () => {
     // Use the selectionUser value to replace the selected text
-    console.log(selectionUser);
-
     if (selectionUser) {
       const start = inputValue.indexOf(selectionUser);
       const end = start + selectionUser.length;

@@ -6,6 +6,7 @@ import React, { useState } from "react";
 interface ButtonProps {
   fonts: Array<any>;
   title: string;
+  type: string;
   isOpen: boolean;
   onClick: () => void;
 }
@@ -14,7 +15,7 @@ const Dropdown: React.FC<ButtonProps> = ({ fonts, title, isOpen, onClick }) => {
   const [font, setFont] = useState<string | null>(null);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>): void => {
     const target = event.target as HTMLButtonElement;
-    console.log(target.value);
+    console.log(title);
     setFont(target.value);
     onClick();
   };

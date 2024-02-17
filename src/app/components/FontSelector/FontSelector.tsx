@@ -27,6 +27,7 @@ export default function FontSelector({ text }: FontSelectorProps) {
               key={index}
               fonts={font.buttons}
               title={font.title}
+              type={font.type}
               isOpen={openDropdownIndex === index}
               onClick={() => handleDropdownClick(index)}
             />

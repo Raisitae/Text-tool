@@ -1,6 +1,7 @@
 export const fontSelectorsData = [
   {
     title: "Heading font",
+    type: "heading",
     buttons: [
       { font: "Montserrat Light" },
       { font: "Open Sans" },
@@ -13,6 +14,7 @@ export const fontSelectorsData = [
   },
   {
     title: "Paragraph font",
+    type: "paragraph",
     buttons: [
       { font: "Karla" },
       { font: "Roboto" },
@@ -23,6 +25,7 @@ export const fontSelectorsData = [
   },
   {
     title: "Link font",
+    type: "link",
     buttons: [
       { font: "Karla" },
       { font: "Roboto" },

@@ -3,7 +3,7 @@ import React, { Dispatch, createContext, useContext, useState } from "react";
 
 // Define the properties and their types that you want to store in the context
 interface TextareaContextProps {
-  TextareaContent: string;
+  setTextareaContent: Dispatch<string>;
   textarea: string;
   setTextarea: Dispatch<string>;
   buttonClick: boolean;
@@ -12,6 +12,7 @@ interface TextareaContextProps {
   setLink: Dispatch<string>;
   check: boolean;
   setCheck: Dispatch<boolean>;
+  textareaContent?: string;
 }
 
 export const TextareaContext = createContext<TextareaContextProps | undefined>(
@@ -33,6 +34,7 @@ const ProviderTextarea: React.FC<{
   children: React.ReactNode; // Include the React.ReactNode type for children
 }> = ({ value, children }) => {
   const [textarea, setTextarea] = useState("");
+  const [textareaContent, setTextareaContent] = useState("");
   const [buttonClick, setButtonClick] = useState(false);
   const [link, setLink] = useState("");
   const [check, setCheck] = useState(false);
@@ -40,7 +42,7 @@ const ProviderTextarea: React.FC<{
   // Add the missing setTextarea function to the context value
   const contextValue: TextareaContextProps = {
     ...value,
-    TextareaContent: value?.TextareaContent ?? "", // Provide a default value if not provided
+    setTextareaContent,
     textarea,
     setTextarea,
     buttonClick,
@@ -49,6 +51,7 @@ const ProviderTextarea: React.FC<{
     setLink,
     check,
     setCheck,
+    textareaContent, // Provide a default value if not provided
   };
 
   return (
