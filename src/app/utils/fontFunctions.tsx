@@ -14,11 +14,11 @@ import {
 } from "./fonts";
 
 export const handleAll = (
-  type: string,
-  setButtonClick: Dispatch<boolean>,
-  setHeading: Dispatch<NextFont>,
-  setLink: Dispatch<NextFont>,
-  setParagraph: Dispatch<NextFont>
+  type: string
+  //setButtonClick: Dispatch<boolean>,
+  //setHeading: Dispatch<NextFont>,
+  //setLink: Dispatch<NextFont>,
+  //setParagraph: Dispatch<NextFont>
 ) => {
   switch (type) {
     case "heading":
