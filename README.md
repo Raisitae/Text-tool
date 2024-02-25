@@ -1,6 +1,6 @@
 # Quick HTML Formatting tool
 
-This tool was design to speed up my work formatting HTML inputs while having a visual preview of what the text will look like.
+This tool was designed to speed up my work formatting HTML inputs while visually previewing what the text will look like.
 
 ## How does it work
 
@@ -12,7 +12,17 @@ This tool was design to speed up my work formatting HTML inputs while having a v
 
 **Font Preview:** Allows us to change the font family of titles, text and links to preview how they will appear.
 
-## Tecnologies used
+## Technologies used
 
 Next Js + Typescript + Tailwind.
-It will be deployed in Vercel.
+Deploy: https://html-text-tool.vercel.app/
+
+### This is a WIP
+
+This is a work in progress. This app still needs to undergo a redesign to be mobile-friendly (which currently is not)
+
+My future development plans include:
+
+- Change font size of the text heading depending in the type of heading
+- Dark and light theme
+- Multiple language support

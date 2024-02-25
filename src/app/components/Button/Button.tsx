@@ -38,6 +38,7 @@ const Button: React.FC<ButtonProps> = ({ tag, text }) => {
       case "h6":
       case "h7":
       case "li":
+      case "strong":
         handleAll(2, tag, textarea, setTextarea, setButtonClick, setSentences);
         break;
       case "br":
