@@ -12,20 +12,51 @@ import {
   karla,
   sourceSansPro,
 } from "./fonts";
+import { Dispatch } from "react";
+
+const translateFont = (font: string) => {
+  console.log(font);
+  switch (font) {
+    case "Montserrat Light":
+      return montLight;
+    case "Open Sans":
+      return openSans;
+    case "Open Sans Bold":
+      return openSansBold;
+    case "Roboto":
+      return roboto;
+    case "Volkhov":
+      return volkov;
+    case "Source Sans Pro":
+      return sourceSansPro;
+    case "Noto Serif":
+      return notoSerif;
+    case "Manrope":
+      return manrope;
+    case "Karla":
+      return karla;
+    default:
+      return notoSerif; // Assign a default font here
+  }
+};
 
 export const handleAll = (
-  type: string
-  //setButtonClick: Dispatch<boolean>,
-  //setHeading: Dispatch<NextFont>,
-  //setLink: Dispatch<NextFont>,
-  //setParagraph: Dispatch<NextFont>
+  type: string,
+  setHeading: Dispatch<NextFont>,
+  setLink: Dispatch<NextFont>,
+  setParagraph: Dispatch<NextFont>,
+  font: string
 ) => {
+  let chosenFont: NextFont = translateFont(font);
   switch (type) {
-    case "heading":
-
-    case "paragraph":
+    case "Heading font":
+      setHeading(chosenFont);
       break;
-    case "link": //br
+    case "Paragraph font":
+      setParagraph(chosenFont);
+      break;
+    case "Link font":
+      setLink(chosenFont);
       break;
   }
 };

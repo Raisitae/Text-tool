@@ -1,7 +1,8 @@
 "use client";
-import { title } from "process";
-import { Fragment } from "react";
 import React, { useState } from "react";
+import { useFontContext } from "@/app/context/FontContext";
+import { handleAll } from "@/app/utils/fontFunctions";
+import { NextFont } from "next/dist/compiled/@next/font";
 
 interface ButtonProps {
   fonts: Array<any>;
@@ -12,11 +13,15 @@ interface ButtonProps {
 }
 
 const Dropdown: React.FC<ButtonProps> = ({ fonts, title, isOpen, onClick }) => {
-  const [font, setFont] = useState<string | null>(null);
+  const [font, setFont] = useState<string>("Noto Serif");
+  const { setHeading, heading, setLink, setParagraph } = useFontContext();
+
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>): void => {
     const target = event.target as HTMLButtonElement;
-    console.log(title);
     setFont(target.value);
+    //aqui va a haber que setear la font global de acuerdo al title y al value tocado
+    //si mando la font, todavia el font no esta seteado y se manda cualq cosa asi que voy a mandar el value
+    handleAll(title, setHeading, setLink, setParagraph, target.value);
     onClick();
   };
 
