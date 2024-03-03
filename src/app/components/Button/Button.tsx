@@ -3,7 +3,11 @@
 import { Inter } from "next/font/google";
 import React, { useState } from "react";
 import { useTextareaContext } from "../../context/TextareaContext";
-import { handleAll, handleCapitalization } from "../../utils/buttonFunctions";
+import {
+  handleAll,
+  handleCapitalization,
+  handleEmptySpaces,
+} from "../../utils/buttonFunctions";
 
 const inter = Inter({
   weight: "400",
@@ -23,6 +27,8 @@ const Button: React.FC<ButtonProps> = ({ tag, text }) => {
     useTextareaContext();
 
   const handleClick = () => {
+    handleEmptySpaces(textarea, setTextarea, setButtonClick);
+    console.log(textarea);
     switch (tag) {
       case "ol":
       case "ul":

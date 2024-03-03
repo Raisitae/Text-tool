@@ -17,6 +17,8 @@ interface FormProps {
 export const TextArea: React.FC<FormProps> = ({ placeholder }) => {
   const [inputValue, setInputValue] = useState("");
   const [selectionUser, setSelectionUser] = useState("");
+  const [selectionStart, setSelectionStart] = useState<number>(0);
+  const [selectionEnd, setSelectionEnd] = useState<number>(0);
 
   const {
     textarea,
@@ -24,6 +26,7 @@ export const TextArea: React.FC<FormProps> = ({ placeholder }) => {
     buttonClick,
     setButtonClick,
     setTextareaContent,
+    textareaContent,
   } = useTextareaContext();
 
   useEffect(() => {
@@ -39,39 +42,41 @@ export const TextArea: React.FC<FormProps> = ({ placeholder }) => {
     setTextareaContent(newContent);
   };
 
+  const handleResetingSelection = () => {
+    //this resets the selection and puts the cursor at the end of the text
+    const calculateLastIndex =
+      (textareaContent?.length ?? 0) + (textarea?.length ?? 0);
+    setSelectionUser("");
+    setTextarea("");
+    setSelectionStart(calculateLastIndex);
+    setSelectionEnd(calculateLastIndex);
+  };
+
   const handleButtonClick = () => {
-    // Use the selectionUser value to replace the selected text
-    if (selectionUser) {
-      const start = inputValue.indexOf(selectionUser);
-      const end = start + selectionUser.length;
-
-      // Replace the selected text
+    if (selectionUser !== "") {
+      //This handles what happens if the user selected text
       const newInputValue =
-        inputValue.substring(0, start) + textarea + inputValue.substring(end);
-
+        inputValue.substring(0, selectionStart) +
+        textarea +
+        inputValue.substring(selectionEnd);
       setInputValue(newInputValue);
-      setSelectionUser(""); // Clear the selection after replacement
+      handleResetingSelection();
     } else {
-      const handleInputChange = (
-        event: React.ChangeEvent<HTMLTextAreaElement>
-      ) => {
-        setInputValue(event.target.value);
-        const positionOfClick = event.target.selectionStart;
-        console.log(positionOfClick);
-
-        const end = positionOfClick + 1;
-
-        const newInputValue =
-          inputValue.substring(0, positionOfClick) + inputValue.substring(end);
-
-        setSelectionUser(newInputValue); // Clear the selection after replacement
-      };
+      //This is just for adding the tags if nothing is selected
+      const newInputValue =
+        inputValue.substring(0, selectionStart) + selectionEnd;
+      setSelectionUser(newInputValue);
+      handleResetingSelection();
     }
   };
 
   const getTextSelection = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const selectedText = window.getSelection()?.toString() || "";
+    const selecStart = event.target.selectionStart;
+    const selecEnd = event.target.selectionEnd;
     setSelectionUser(selectedText);
+    setSelectionStart(selecStart);
+    setSelectionEnd(selecEnd);
     setTextarea(selectedText);
   };
 

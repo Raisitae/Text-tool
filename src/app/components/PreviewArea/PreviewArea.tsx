@@ -10,7 +10,6 @@ export const PreviewArea: React.FC<{}> = ({}) => {
   const { textareaContent } = useTextareaContext();
 
   // should add dom purify
-  console.log(textareaContent);
   return (
     <div className="flex flex-col">
       <h2 className="mb-1 text-xl text-light-grey font-bold mt-4">Preview</h2>

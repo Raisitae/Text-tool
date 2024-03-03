@@ -2,19 +2,10 @@
 
 import { Dispatch, SetStateAction } from "react";
 
-//const { textarea, setTextarea, buttonClick, setButtonClick } =
-// useTextareaContext();
-
-//const [sentences, setSentences] = useState<string[]>([]);
-
 interface ButtonFunctionsProps {
   setTextarea: Dispatch<SetStateAction<string>>;
   setButtonClick: Dispatch<SetStateAction<boolean>>;
 }
-
-//it would be good to have a function that removes emtpy space
-//from the beggining and the end of the textarea
-//so the tags dont appear with <tag>         then your text   <tag>
 
 export const handleSentenceChange = (
   index: number,
@@ -38,38 +29,40 @@ export const handleAll = (
   check?: boolean,
   link?: string
 ) => {
-  if (textarea === " ") {
-    console.log(tag);
-    switch (tagCase) {
-      case 1: //normal tags only 1
-      case 2: //normal tags multiple
-        setTextarea(`<${tag}></${tag}>`);
-        break;
-      case 3: //br
-        setTextarea(`<${tag}/>`);
-        break;
-      case 4: // a href
-        setTextarea(
-          `<${tag} href="${link}" ${check ? `target="_blank">` : `>`}</${tag}>`
-        );
-        break;
-    }
-  }
+  //all this ifs should redirect to other functions above this one to make this moke atomic
+
   let numberOfLineBreaks = (textarea.match(/\n/g) || []).length;
   if (numberOfLineBreaks <= 0) {
+    //this verification will have to be a function outside of this
+    //enormous function
+    let newString = textarea;
+    let endSpace = false;
+    let length = textarea.length - 1;
+    while (newString[length] === " ") {
+      newString = textarea.slice(0, length);
+      endSpace = true;
+      length -= 1;
+    }
+    // i will need to do the same for the beginning of the text
+    //and do a verification for both begining and end
+    // is something was removed
+    //then a space at the beginning or end should be added
+
     switch (tagCase) {
       case 1: //normal tags only 1
       case 2: //normal tags multiple
-        setTextarea(`<${tag}>` + textarea + `</${tag}>`);
+        setTextarea(
+          `<${tag}>` + newString + `</${tag}>${endSpace == true ? ` ` : ``}`
+        );
         break;
       case 3: //br
-        setTextarea(textarea + `<${tag}/>`);
+        setTextarea(newString + `<${tag}/>${endSpace == true ? ` ` : ``}`);
         break;
-      case 4: // a href
+      case 4: //a href
         setTextarea(
           `<${tag} href="${link}" ${check ? `target="_blank">` : `>`}` +
-            textarea +
-            `</${tag}>`
+            newString +
+            `</${tag}>${endSpace == true ? ` ` : ``}`
         );
         break;
     }
@@ -105,6 +98,18 @@ export const handleAll = (
     }
   }
   setButtonClick(true);
+};
+
+export const handleEmptySpaces = (
+  textarea: string,
+  setTextarea: Dispatch<string>,
+  setButtonClick: Dispatch<boolean>
+) => {
+  //this function wont update the textarea
+  //but it will modify a string that will be passed to the other
+  //functions
+  //and it should also verify the beining of the string
+  //to remove spaces from there
 };
 
 export const handleSentenceCase = (text: string) => {
