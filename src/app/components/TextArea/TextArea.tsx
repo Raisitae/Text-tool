@@ -66,7 +66,6 @@ export const TextArea: React.FC<FormProps> = ({ placeholder }) => {
       const newInputValue =
         inputValue.substring(0, selectionStart) + selectionEnd;
       setSelectionUser(newInputValue);
-      handleResetingSelection();
     }
   };
 

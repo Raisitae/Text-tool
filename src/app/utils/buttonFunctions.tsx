@@ -35,6 +35,7 @@ export const handleAll = (
   if (numberOfLineBreaks <= 0) {
     //this verification will have to be a function outside of this
     //enormous function
+    console.log("length", textarea.length);
     let newString = textarea;
     let endSpace = false;
     let length = textarea.length - 1;
