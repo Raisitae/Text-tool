@@ -52,6 +52,7 @@ export const TextArea: React.FC<FormProps> = ({ placeholder }) => {
     setSelectionEnd(calculateLastIndex);
   };
 
+  //change name the button is clicked in another component!!
   const handleButtonClick = () => {
     if (selectionUser !== "") {
       //This handles what happens if the user selected text
@@ -80,7 +81,7 @@ export const TextArea: React.FC<FormProps> = ({ placeholder }) => {
   };
 
   return (
-    <div className="flex justify-end items-end">
+    <div className="flex flex-col justify-end items-end ">
       <textarea
         placeholder={placeholder}
         value={inputValue}
@@ -88,7 +89,7 @@ export const TextArea: React.FC<FormProps> = ({ placeholder }) => {
         onSelect={getTextSelection}
         spellCheck="false"
         className={`font-mono 
-      bg-medium-grey w-full min-h-56 placeholder:text-placeholder-grey text-light-grey border border-black transition ease-in-out delay-150 px-6 py-4 rounded-3xl mt-5`}
+        h-text bg-medium-grey w-full break-words placeholder:text-placeholder-grey text-light-grey border border-black transition ease-in-out delay-150 px-6 py-4 rounded-3xl`}
       />
       <div className="absolute m-3 cursor-pointer">
         <svg

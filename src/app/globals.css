@@ -25,3 +25,18 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+.h-avail {
+  height: calc(100vh - 6rem);
+}
+
+.h-text {
+  height: calc(100vh - 10rem);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #888 transparent;
+  scroll-behavior: smooth;
+  border-radius: 5px;
+}

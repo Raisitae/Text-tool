@@ -17,9 +17,9 @@ export default function FontSelector({ text }: FontSelectorProps) {
   };
 
   return (
-    <div className="flex flex-col  justify-around">
+    <div className="flex flex-col justify-around relative">
       <h2 className="mb-2 text-light-grey font-bold">{text}</h2>
-      <div className="grid grid-cols-3 grid-rows-1 w-full">
+      <div className="grid grid-cols-1 grid-rows-3 ">
         {fontSelectorsData.map((font, index) => (
           <div key={index}>
             <h2 className="mb-2 text-light-grey font-bold">{font.title}</h2>

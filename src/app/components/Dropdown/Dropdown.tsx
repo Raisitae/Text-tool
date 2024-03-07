@@ -26,9 +26,9 @@ const Dropdown: React.FC<ButtonProps> = ({ fonts, title, isOpen, onClick }) => {
   };
 
   return (
-    <div className="">
+    <div className="flex flex-col w-full">
       <button
-        className={`mb-2 flex flex-row bg-bubble-gum hover:bg-dark-bubble-gum text-light-grey transition ease-in-out delay-150 px-4 py-2 rounded-3xl mr-4`}
+        className={`mb-2 flex flex-row justify-self-stretch bg-border-grey hover:bg-bubble-gum text-light-grey transition ease-in-out delay-150 px-4 py-2 rounded-sm mr-4`}
         type="button"
         onClick={onClick}>
         {font != null ? font : title}
@@ -49,7 +49,7 @@ const Dropdown: React.FC<ButtonProps> = ({ fonts, title, isOpen, onClick }) => {
       <div
         className={`${
           isOpen ? "" : "hidden"
-        } bg-dark-grey p-3 absolute rounded flex flex-col items-baseline gap-2 border border-black`}>
+        } bg-dark-grey p-3 absolute rounded flex flex-col items-baseline gap-2 border border-black  w-[94%]`}>
         {fonts.map((text, index) => (
           <button
             key={index}

@@ -23,7 +23,7 @@ const Check: React.FC<CheckProps> = ({ label }) => {
   };
 
   return (
-    <div className="flex items-center mb-2 ">
+    <div className="flex items-center mb-2 relative">
       <input
         type="checkbox"
         checked={isChecked}
@@ -35,7 +35,7 @@ const Check: React.FC<CheckProps> = ({ label }) => {
       <div
         className={`${
           isChecked ? "opacity-0" : "opacity-100"
-        } cursor-pointer absolute z-10 rounded min-h-6 min-w-6 mr-2 p-2 bg-medium-grey border border-black`}></div>
+        } cursor-pointer absolute left-1 z-10 rounded min-h-6 min-w-6 mr-2 p-2 bg-medium-grey border border-border-grey`}></div>
       <p className="text-light-grey">{label}</p>
     </div>
   );

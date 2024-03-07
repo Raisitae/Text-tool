@@ -18,16 +18,17 @@ export default function Selector({
   placeholder,
   label,
 }: SelectorProps) {
+  //call this button container?
 
   return (
-    <div className="">
-      <h2 className="mb-2 text-light-grey font-bold">{title}</h2>
+    <div className="flex flex-col">
+      <h2 className=" mb-2 text-light-grey font-bold">{title}</h2>
       {type === 1 ? (
         buttons.map((button, index) => (
           <Button key={index} text={button.text} tag={button.tag} />
         ))
       ) : (
-        <div className="flex align-center">
+        <div className="flex flex-col align-center w-full">
           <Input placeholder={placeholder} />
           {buttons.map((button, index) => (
             <Button key={index} text={button.text} tag={button.tag} />

@@ -33,7 +33,7 @@ export const Input: React.FC<FormProps> = ({ placeholder }) => {
       value={inputValue}
       onChange={handleInputChange}
       className={`inter-button ${inter.className}
-      bg-medium-grey mb-2 placeholder:text-placeholder-grey text-light-grey border border-black transition ease-in-out delay-150 px-4 py-2 rounded-3xl mr-4`}
+      bg-medium-grey mb-2 placeholder:text-placeholder-grey text-light-grey border border-border-grey transition ease-in-out delay-150 px-4 py-2 ronded-sm mr-4 w-full`}
     />
   );
 };

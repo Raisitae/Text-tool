@@ -61,7 +61,7 @@ export const handleAll = (
         break;
       case 4: //a href
         setTextarea(
-          `<${tag} href="${link}" ${check ? `target="_blank">` : `>`}` +
+          `<${tag} href="${link}"${check ? `target="_blank">` : `>`}` +
             newString +
             `</${tag}>${endSpace == true ? ` ` : ``}`
         );
@@ -71,7 +71,6 @@ export const handleAll = (
     if (tagCase === 1) {
       setTextarea(`<${tag}>` + textarea + `</${tag}>`);
     } else {
-      //here im missing funcionts for ol and ul
       const newSentences = textarea.split(/\n+/);
       setSentences(newSentences);
       for (let i = 0; i < newSentences.length; i++) {

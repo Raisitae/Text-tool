@@ -9,35 +9,36 @@ import PreviewArea from "./components/PreviewArea/PreviewArea";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col justify-center align-center bg-dark-grey p-12 ">
+    <main className="max-h-screen w-full flex flex-col grid-cols-1 justify-start align-center bg-dark-grey overflow-x-hidden">
       <Header
         title={"Quick HTML formatting"}
         subtitle={"by Raisitae"}
         link={"link"}
       />
-      <div className="flex flex-row gap-4">
-        <div className="flex flex-col items-left w-1/2 h-full">
-          <div className="flex flex-col items-left justify-center gap-1">
-            {selectorsData.map(
-              ({ title, buttons, placeholder, label, type }, index) => (
-                <Selector
-                  key={index}
-                  title={title}
-                  buttons={buttons}
-                  placeholder={placeholder ? placeholder : ""}
-                  label={label ? label : ""}
-                  type={type}
-                />
-              )
-            )}
+      <div className="grid grid-cols-6 h-avail">
+        <div className="items-left gap-1 col-span-1 overflow-scroll overflow-x-hidden p-7 bg-[#151516]">
+          {selectorsData.map(
+            ({ title, buttons, placeholder, label, type }, index) => (
+              <Selector
+                key={index}
+                title={title}
+                buttons={buttons}
+                placeholder={placeholder ? placeholder : ""}
+                label={label ? label : ""}
+                type={type}
+              />
+            )
+          )}
+          <FontSelector text="Font selector" />
+        </div>
+        <div className="col-span-5 flex px-7 items-center">
+          <div className="flex flex-col items-left w-1/2">
             <TextArea placeholder="Enter your text here" />
           </div>
-        </div>
-        <div className="border-4 mx-2 border-medium-grey"></div>
-        <div className="flex flex-col items-left w-1/2 gap-1">
-          <Instructions />
-          <FontSelector text="Font selector" />
-          <PreviewArea />
+          <div className="border-4 mx-6 my-5 h-text border-border-grey"></div>
+          <div className="flex flex-col items-left w-1/2">
+            <PreviewArea />
+          </div>
         </div>
       </div>
     </main>
